@@ -1,48 +1,49 @@
+
+
 /* =========================================
-   1. VARIÁVEIS E RESET
+   1. VARIÁVEIS E RESET (MESCLADOS)
    ========================================= */
 :root {
-    --cor-primaria: #0056b3;   /* Azul forte */
-    --cor-secundaria: #004085; /* Azul escuro (hover/titulos) */
-    --cor-fundo: #f4f7f9;      /* Fundo claro */
-    --cor-texto: #333;         /* Texto padrão */
-    --cor-clara: #fff;         /* Branco */
+    --cor-primaria: #007bff;   /* Azul médico do novo código */
+    --cor-secundaria: #0056b3; /* Azul escuro para hover */
+    --cor-fundo: #f4f7f9;
+    --cor-texto: #333;
+    --cor-clara: #fff;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* Mantive Montserrat conforme seu index.html, mas adicionei Poppins como alternativa */
+    font-family: 'Montserrat', 'Poppins', sans-serif; 
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
     line-height: 1.6;
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
 }
 
-a {
-    text-decoration: none;
-    color: var(--cor-primaria);
-}
-
-ul {
-    list-style: none;
-}
-
 /* =========================================
-   2. CABEÇALHO E NAVEGAÇÃO
+   2. CABEÇALHO (MANTIDO PARA O MAIN.JS)
    ========================================= */
+/* Nota: Mantive as classes .cabecalho e .menu-navegacao pois seu main.js as utiliza para criar o menu */
 .cabecalho {
     background-color: var(--cor-clara);
-    color: var(--cor-primaria);
     padding: 15px 5%; 
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     width: 100%;
+    position: fixed; /* Adicionado do seu novo código */
+    top: 0;
+    z-index: 1000;
 }
 
 .logo-container {
@@ -51,88 +52,94 @@ ul {
     gap: 10px;
 }
 
-/* --- ESTILO DA LOGO --- */
 .logo-icone-img {
     width: 80px; 
     height: auto;
-    object-fit: contain;
-    margin-right: 5px;
 }
 
 .nome-empresa {
-    font-size: 1.8em;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: var(--cor-secundaria);
+    color: var(--cor-texto);
 }
 
-.subtitulo {
-    font-size: 0.9em;
+.nome-empresa span {
     color: var(--cor-primaria);
-    margin-left: 5px;
-    font-weight: 400;
 }
 
-/* MENU */
 .menu-navegacao ul {
     display: flex;
-    gap: 20px;
+    list-style: none;
+    gap: 30px;
 }
 
 .menu-navegacao a {
     color: var(--cor-texto);
-    font-weight: 500;
-    padding: 5px 10px;
-    transition: color 0.3s, border-bottom 0.3s;
+    text-decoration: none;
+    font-weight: 400;
+    transition: 0.3s;
 }
 
 .menu-navegacao a:hover,
 .menu-navegacao a.ativo {
     color: var(--cor-primaria);
-    border-bottom: 2px solid var(--cor-primaria);
 }
 
 /* =========================================
-   3. CONTEÚDO GERAL E HOME
+   3. SEÇÃO HERO (NOVO CÓDIGO INTEGRADO)
    ========================================= */
-.conteudo-principal {
-    padding: 40px 5%;
-    min-height: 60vh;
-    max-width: 1200px;
-    margin: 0 auto;
+.hero {
+    height: 100vh;
+    background-image: url('https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=2070');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
 }
 
-.apresentacao {
-    text-align: center;
-    padding: 50px 0;
-    background-color: var(--cor-clara);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+.hero-overlay {
+    width: 100%;
+    height: 100%;
+    /* Degradê da esquerda para a direita */
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.8) 30%, rgba(0, 0, 0, 0.2) 70%);
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
 }
 
-.apresentacao h2 {
-    color: var(--cor-secundaria);
-    margin-bottom: 15px;
-    font-size: 2em;
+.hero-content {
+    color: white;
+    max-width: 600px;
 }
 
-.apresentacao p {
-    max-width: 700px;
-    margin: 0 auto 30px auto;
-    color: var(--cor-texto);
+.hero-content h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
 }
 
-.btn-cta {
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.btn-apresentacao {
     display: inline-block;
-    background-color: var(--cor-primaria);
-    color: var(--cor-clara);
-    padding: 12px 25px;
+    padding: 15px 40px;
+    background: var(--cor-primaria);
+    color: white;
+    text-decoration: none;
     border-radius: 5px;
-    font-weight: 700;
-    transition: background-color 0.3s;
+    font-weight: bold;
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.btn-cta:hover {
-    background-color: var(--cor-secundaria);
+.btn-apresentacao:hover {
+    background: var(--cor-secundaria);
+    transform: scale(1.05);
 }
 
 /* =========================================
